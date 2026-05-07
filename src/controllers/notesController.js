@@ -3,20 +3,17 @@ import createHttpError from 'http-errors';
 
 export const getAllNotes = async (req, res) => {
   const notes = await Note.find();
-  res.status(200).json({
-	"message": "Retrieved all notes",
-	"notes": notes
-	}
-);
+  res.status(200).json([notes]);
 };
 
 export const getNoteById = async (req, res) => {
   const { noteId } = req.params;
   const note = await Note.findById(noteId);
   if (!note) {
-    return res.status(404).json({ "message": "Note not found" });
+   throw createHttpError(404, "Note not found");
   }
-  res.status(200).json({ "message": `Retrieved note with ID: ${noteId}` });
+  res.status(200).json({ "message": `Retrieved note with ID: ${noteId}`, "note": note });
+
 };
 
 export const createNote = async (req, res) => {

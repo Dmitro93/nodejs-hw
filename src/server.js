@@ -16,11 +16,6 @@ app.use(cors());
 
 const PORT = process.env.PORT ?? 3000;
 
-app.use((req, res, next) => {
-
-  next();
-});
-
 app.use(notesRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
