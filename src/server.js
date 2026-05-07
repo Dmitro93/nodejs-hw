@@ -6,9 +6,9 @@ import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import notesRoutes from './routes/notesRoutes.js';
+const app = express();
 
 app.use(logger);
-const app = express();
 app.use(express.json());
 app.use(cors());
 
@@ -22,11 +22,9 @@ app.use((req, res, next) => {
 });
 
 app.use(notesRoutes);
-
-app.
-
 app.use(notFoundHandler);
 app.use(errorHandler);
+
 
 await connectMongoDB();
 
