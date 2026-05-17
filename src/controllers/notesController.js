@@ -21,7 +21,7 @@ const skip = (page - 1) * perPage;
         });
     }
   const [totalNotes, notes] = await Promise.all([
-    notesQuery.clone().countDocuments(notesQuery),
+    notesQuery.clone().countDocuments(),
     notesQuery.skip(skip).limit(perPage),
   ]);
 
