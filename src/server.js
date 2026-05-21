@@ -27,8 +27,17 @@ app.use(errors());
 app.use(errorHandler);
 
 
-await connectMongoDB();
+const bootstrap = async () => {
+  try {
+    await connectMongoDB();
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+
+bootstrap();
