@@ -2,7 +2,7 @@ import createHttpError from 'http-errors';
 
 import { Session } from '../models/session.js';
 import { createSession } from '../services/auth.js';
-import { setSessionCookies } from '../utils/setSessionCookies.js';
+import { setSessionCookies } from '../services/auth.js';
 
 export const refreshUserSession = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;
